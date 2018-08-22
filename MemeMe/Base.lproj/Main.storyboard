@@ -21,6 +21,9 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFq-fD-Jpt" userLabel="Top Toolbar">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="DUY-oJ-krS"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem width="16" style="plain" systemItem="fixedSpace" id="U4u-SV-9kh"/>
                                     <barButtonItem systemItem="action" id="ZtG-kv-8aw" userLabel="Share Button"/>
@@ -32,6 +35,9 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-tj-Y0V" userLabel="Bottom Toolbar">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="6kR-xK-YX1"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MNn-Z8-RGd"/>
                                     <barButtonItem systemItem="camera" id="fMt-KF-6V2" userLabel="Camera Button"/>
