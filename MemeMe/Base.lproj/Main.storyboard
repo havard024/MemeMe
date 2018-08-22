@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,80 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFq-fD-Jpt" userLabel="Top Toolbar">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <barButtonItem width="16" style="plain" systemItem="fixedSpace" id="U4u-SV-9kh"/>
+                                    <barButtonItem systemItem="action" id="ZtG-kv-8aw" userLabel="Share Button"/>
+                                    <barButtonItem systemItem="flexibleSpace" id="Zm8-9G-yoS"/>
+                                    <barButtonItem systemItem="cancel" id="Xtl-pR-seg" userLabel="Cancel Button"/>
+                                    <barButtonItem width="16" style="plain" systemItem="fixedSpace" id="KFs-vd-np7"/>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-tj-Y0V" userLabel="Bottom Toolbar">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="MNn-Z8-RGd"/>
+                                    <barButtonItem systemItem="camera" id="fMt-KF-6V2" userLabel="Camera Button"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="kg4-u4-eZo"/>
+                                    <barButtonItem title="Album" id="gzL-eN-DDU" userLabel="Album Button"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nLz-jl-WiM"/>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iVC-Hg-g2z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qr2-hI-l3y" userLabel="Top Text Field">
+                                <rect key="frame" x="16" y="96" width="343" height="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yei-iW-ENc" userLabel="Top Text Field">
+                                <rect key="frame" x="16" y="555" width="343" height="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Qr2-hI-l3y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1Jc-rR-DFU"/>
+                            <constraint firstItem="iVC-Hg-g2z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7kc-b6-2FX"/>
+                            <constraint firstItem="nFq-fD-Jpt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="CtP-16-2Ly"/>
+                            <constraint firstItem="bMR-tj-Y0V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IMe-v4-7Ok"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qr2-hI-l3y" secondAttribute="trailing" constant="16" id="KWJ-AO-Gdf"/>
+                            <constraint firstItem="bMR-tj-Y0V" firstAttribute="top" secondItem="iVC-Hg-g2z" secondAttribute="bottom" id="LTX-st-97s"/>
+                            <constraint firstItem="nFq-fD-Jpt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PiE-Ih-4nx"/>
+                            <constraint firstItem="yei-iW-ENc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Tpw-Fw-cG5"/>
+                            <constraint firstItem="nFq-fD-Jpt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cwY-FS-XW4"/>
+                            <constraint firstItem="iVC-Hg-g2z" firstAttribute="top" secondItem="nFq-fD-Jpt" secondAttribute="bottom" id="mVf-Qp-0HG"/>
+                            <constraint firstItem="bMR-tj-Y0V" firstAttribute="top" secondItem="yei-iW-ENc" secondAttribute="bottom" constant="32" id="nbA-4f-5Za"/>
+                            <constraint firstItem="bMR-tj-Y0V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nze-Io-FrA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iVC-Hg-g2z" secondAttribute="trailing" id="o9t-dQ-oUM"/>
+                            <constraint firstItem="Qr2-hI-l3y" firstAttribute="top" secondItem="nFq-fD-Jpt" secondAttribute="bottom" constant="32" id="qp8-ZI-0pd"/>
+                            <constraint firstItem="bMR-tj-Y0V" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vE1-av-0EH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yei-iW-ENc" secondAttribute="trailing" constant="16" id="y7q-VW-nsv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cameraButton" destination="fMt-KF-6V2" id="CP8-o5-qch"/>
+                        <outlet property="cancelButton" destination="Xtl-pR-seg" id="kiq-n2-UHu"/>
+                        <outlet property="shareButton" destination="ZtG-kv-8aw" id="5ga-CQ-vgt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="80.799999999999997" y="36.431784107946029"/>
         </scene>
     </scenes>
 </document>
