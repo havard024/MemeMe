@@ -9,6 +9,13 @@
 import UIKit
 import Photos
 
+struct Meme {
+    var topText: String?
+    var bottomText: String?
+    var originalImage: UIImage
+    var memedImage: UIImage
+}
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -18,11 +25,16 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    
+    var memedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        configureUI()
+        shareButton.isEnabled = false
+        cancelButton.isEnabled = false
         configureTextField(textField: topTextField, placeholder: "TOP")
         configureTextField(textField: bottomTextField, placeholder: "BOTTOM")
     }
@@ -35,42 +47,66 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func configureTextField(textField: UITextField, placeholder: String) {
+        
+        let font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)
+        let strokeWidth = -5.0
+        
         let textAttributes:[String: Any] = [
             NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
             NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
-            NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedStringKey.strokeWidth.rawValue: -5.0]
+            NSAttributedStringKey.font.rawValue: font!,
+            NSAttributedStringKey.strokeWidth.rawValue: strokeWidth
+        ]
         
         textField.defaultTextAttributes = textAttributes
         textField.textAlignment = .center
         textField.clearsOnBeginEditing = true
         textField.autocapitalizationType = .allCharacters
+        
+        textField.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.black,
+                NSAttributedStringKey.strokeColor: UIColor.white,
+                NSAttributedStringKey.strokeWidth: strokeWidth,
+                NSAttributedStringKey.font: font!
+            ]
+        )
     }
     
-    func configureUI() {
-        shareButton.isEnabled = false
-        cancelButton.isEnabled = false
-        // TODO: Figure out how to hide cancelButton
+    func generateMemedImage() -> UIImage {
+        
+        prepareUI(hide: true)
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        prepareUI(hide: false)
+        
+        return memedImage
     }
     
-    func checkPermission() {
-        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus(); switch photoAuthorizationStatus {
-        case .authorized: print("Access is granted by user")
-        case .notDetermined: PHPhotoLibrary.requestAuthorization({
-            (newStatus) in print("status is \(newStatus)"); if newStatus == PHAuthorizationStatus.authorized {
-                print("success") }
-            })
-            case .restricted: print("User do not have access to photo album.")
-            case .denied: print("User has denied the permission.")
-            }
+    func prepareUI(hide: Bool) {
+        
+        // Hide toolbars and placeholder text
+        topToolbar.isHidden = hide
+        bottomToolbar.isHidden = hide
+    
+        prepareTextField(hide: hide, field: topTextField)
+        prepareTextField(hide: hide, field: bottomTextField)
+    }
+    
+    func prepareTextField(hide: Bool, field: UITextField) {
+        if (field.text == nil || field.text == "") {
+            print("Hide top text field \(hide)")
+            field.isHidden = hide
         }
+    }
     
     func openGallery(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
@@ -97,6 +133,42 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         }
     }
     
+    func save() {
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: self.memedImage!)
+    }
+    
+    @IBAction func shareImage(_ sender: Any) {
+        memedImage = generateMemedImage()
+        
+        let vc = UIActivityViewController(activityItems: [self.memedImage!], applicationActivities: [])
+        vc.completionWithItemsHandler = {(activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if !completed {
+                // User canceled
+                return
+            }
+            self.save()
+            self.dismiss(animated: true, completion: nil)
+
+            // Use belowe code for later if memes has t be stored on the phone
+            /*
+            let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus(); switch photoAuthorizationStatus {
+            case .authorized:
+                // TODO: save meme to storage here
+            case .notDetermined: PHPhotoLibrary.requestAuthorization({
+                (newStatus) in print("status is \(newStatus)")
+                if newStatus == PHAuthorizationStatus.authorized {
+                    // TODO: save meme to storage here
+                }
+            })
+            case .restricted: print("User do not have access to photo album.")
+            case .denied: print("User has denied the permission.")
+            }
+            */
+            
+        }
+        present(vc, animated: true)
+    }
+    
     //MARK: - Delegates
     
     @objc func imagePickerController(_ picker: UIImagePickerController,
@@ -105,6 +177,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             imageView.image = chosenImage
+            shareButton.isEnabled = true
         } else {
             print("Error selecting image.")
         }
