@@ -12,6 +12,7 @@
 		041272D4212D6A0500F4654E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041272D2212D6A0500F4654E /* Main.storyboard */; };
 		041272D6212D6A0600F4654E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041272D5212D6A0600F4654E /* Assets.xcassets */; };
 		041272D9212D6A0600F4654E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041272D7212D6A0600F4654E /* LaunchScreen.storyboard */; };
+		A181143E852E808734AF4A69 /* Pods_MemeMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB46D813FE0BE4B6406142D7 /* Pods_MemeMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		041272D5212D6A0600F4654E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041272D8212D6A0600F4654E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041272DA212D6A0600F4654E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68A67D0DEA3771DA43D91FF2 /* Pods-MemeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.debug.xcconfig"; sourceTree = "<group>"; };
+		BB46D813FE0BE4B6406142D7 /* Pods_MemeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemeMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7A943C33CA0910CD7ECF811 /* Pods-MemeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A181143E852E808734AF4A69 /* Pods_MemeMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				041272CD212D6A0400F4654E /* MemeMe */,
 				041272CC212D6A0400F4654E /* Products */,
+				BC428D097D74F85AD793CAA0 /* Pods */,
+				594311BB15E9351BA70D8A36 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = MemeMe;
 			sourceTree = "<group>";
 		};
+		594311BB15E9351BA70D8A36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB46D813FE0BE4B6406142D7 /* Pods_MemeMe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC428D097D74F85AD793CAA0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				68A67D0DEA3771DA43D91FF2 /* Pods-MemeMe.debug.xcconfig */,
+				E7A943C33CA0910CD7ECF811 /* Pods-MemeMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 041272DD212D6A0600F4654E /* Build configuration list for PBXNativeTarget "MemeMe" */;
 			buildPhases = (
+				11BEEF0C44D9A7C816C50F9B /* [CP] Check Pods Manifest.lock */,
 				041272C7212D6A0400F4654E /* Sources */,
 				041272C8212D6A0400F4654E /* Frameworks */,
 				041272C9212D6A0400F4654E /* Resources */,
+				FFDE6895CF4BD54808B588FB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11BEEF0C44D9A7C816C50F9B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MemeMe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFDE6895CF4BD54808B588FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		041272C7212D6A0400F4654E /* Sources */ = {
@@ -278,6 +343,7 @@
 		};
 		041272DE212D6A0600F4654E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68A67D0DEA3771DA43D91FF2 /* Pods-MemeMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +362,7 @@
 		};
 		041272DF212D6A0600F4654E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7A943C33CA0910CD7ECF811 /* Pods-MemeMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
