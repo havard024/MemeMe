@@ -54,16 +54,16 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qr2-hI-l3y" userLabel="Top Text Field">
-                                <rect key="frame" x="16" y="96" width="343" height="36"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Qr2-hI-l3y" userLabel="Top Text Field">
+                                <rect key="frame" x="16" y="96" width="343" height="44"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yei-iW-ENc" userLabel="Top Text Field">
-                                <rect key="frame" x="16" y="555" width="343" height="36"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="yei-iW-ENc" userLabel="Bottom Text Field">
+                                <rect key="frame" x="16" y="555" width="343" height="53"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
@@ -71,6 +71,7 @@
                         <constraints>
                             <constraint firstItem="Qr2-hI-l3y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1Jc-rR-DFU"/>
                             <constraint firstItem="iVC-Hg-g2z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7kc-b6-2FX"/>
+                            <constraint firstItem="Qr2-hI-l3y" firstAttribute="height" secondItem="yei-iW-ENc" secondAttribute="height" id="Acm-hg-Qcm"/>
                             <constraint firstItem="nFq-fD-Jpt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="CtP-16-2Ly"/>
                             <constraint firstItem="bMR-tj-Y0V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IMe-v4-7Ok"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qr2-hI-l3y" secondAttribute="trailing" constant="16" id="KWJ-AO-Gdf"/>
@@ -89,10 +90,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="yei-iW-ENc" id="K8p-qS-T30"/>
                         <outlet property="cameraButton" destination="fMt-KF-6V2" id="CP8-o5-qch"/>
                         <outlet property="cancelButton" destination="Xtl-pR-seg" id="kiq-n2-UHu"/>
                         <outlet property="imageView" destination="iVC-Hg-g2z" id="T11-k8-Te1"/>
                         <outlet property="shareButton" destination="ZtG-kv-8aw" id="5ga-CQ-vgt"/>
+                        <outlet property="topTextField" destination="Qr2-hI-l3y" id="tmw-yT-3IH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

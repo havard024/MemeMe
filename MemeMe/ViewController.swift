@@ -16,11 +16,15 @@ UINavigationControllerDelegate {
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureUI()
+        configureTextField(textField: topTextField, placeholder: "TOP")
+        configureTextField(textField: bottomTextField, placeholder: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +34,20 @@ UINavigationControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func configureTextField(textField: UITextField, placeholder: String) {
+        let textAttributes:[String: Any] = [
+            NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+            NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedStringKey.strokeWidth.rawValue: -5.0]
+        
+        textField.defaultTextAttributes = textAttributes
+        textField.textAlignment = .center
+        textField.clearsOnBeginEditing = true
+        textField.autocapitalizationType = .allCharacters
+        textField.text = placeholder
     }
     
     func configureUI() {
