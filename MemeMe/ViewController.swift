@@ -14,7 +14,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -27,7 +26,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         shareButton.isEnabled = false
-        cancelButton.isEnabled = false
         configureTextField(textField: topTextField, placeholder: "TOP")
         configureTextField(textField: bottomTextField, placeholder: "BOTTOM")
     }
@@ -143,6 +141,13 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     func save() {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: self.memedImage!)
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        
+        print("Saving meme");
+        print(meme);
+        dump(appDelegate.memes);
     }
     
     @IBAction func shareImage(_ sender: Any) {
@@ -205,6 +210,9 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
