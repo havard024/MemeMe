@@ -133,6 +133,13 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         }
     }
     
+    @IBAction func takeAnImage(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     func save() {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: self.memedImage!)
     }

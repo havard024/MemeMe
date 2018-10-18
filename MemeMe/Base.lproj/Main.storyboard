@@ -44,7 +44,11 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MNn-Z8-RGd"/>
-                                    <barButtonItem systemItem="camera" id="fMt-KF-6V2" userLabel="Camera Button"/>
+                                    <barButtonItem systemItem="camera" id="fMt-KF-6V2" userLabel="Camera Button">
+                                        <connections>
+                                            <action selector="takeAnImage:" destination="BYZ-38-t0r" id="wSw-d2-ZyS"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="kg4-u4-eZo"/>
                                     <barButtonItem title="Album" id="gzL-eN-DDU" userLabel="Album Button">
                                         <connections>
