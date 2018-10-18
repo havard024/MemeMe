@@ -9,13 +9,6 @@
 import UIKit
 import Photos
 
-struct Meme {
-    var topText: String?
-    var bottomText: String?
-    var originalImage: UIImage
-    var memedImage: UIImage
-}
-
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -114,7 +107,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         imagePicker.modalPresentationStyle = .popover
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
-        imagePicker.popoverPresentationController?.barButtonItem = sender
+        // imagePicker.popoverPresentationController?.barButtonItem = sender
     }
 
     @IBAction func pickAnImage(_ sender: UIBarButtonItem) {
@@ -123,7 +116,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         case .notDetermined: PHPhotoLibrary.requestAuthorization({
             (newStatus) in print("status is \(newStatus)")
             if newStatus == PHAuthorizationStatus.authorized {
-                self.openGallery(sender: sender)
+                self.chooseImageFromCameraOrGallery(source: .photoLibrary)
             }
         })
         case .restricted: print("User do not have access to photo album.")
@@ -132,8 +125,16 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     @IBAction func takeAnImage(_ sender: Any) {
+        // TODO: Check if authorized to use camera
+        self.chooseImageFromCameraOrGallery(source: .camera)
+    }
+    
+    func chooseImageFromCameraOrGallery(source: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = source
+        imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: source)!
+        imagePicker.modalPresentationStyle = .popover
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
